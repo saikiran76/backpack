@@ -7,8 +7,7 @@ const refreshtime = 1000 * 60;
 const count = 250;
 const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${count}&page=1&sparkline=true&price_change_percentage=24h`;
 
-function useRefreshTokenList() {
-  const dispatch = useDispatch();
+const useTokenList = () =>{
   useEffect(() => {
     const fetchTokenList = () => {
       fetch(url)
@@ -34,6 +33,13 @@ function useRefreshTokenList() {
       clearInterval(refresh);
     };
   }, []);
+  
+}
+
+function useRefreshTokenList() {
+  const dispatch = useDispatch();
+  useTokenList();
+  
 }
 
 export default useRefreshTokenList;
